@@ -2,26 +2,36 @@ import { useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
-const Map = () => {
+const Map = ({ selectedLocation }) => {
   const mapContainer = useRef(null);
+  const mapRef = useRef(null);
 
   useEffect(() => {
-    const map = new maplibregl.Map({
+    mapRef.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://demotiles.maplibre.org/style.json', // public MapLibre style
-      center: [-74.5, 40], // [lng, lat]
-      zoom: 9,
+      style: 'https://demotiles.maplibre.org/style.json',
+      center: [-74.5, 40],
+      zoom: 2,
     });
 
-    return () => map.remove(); // Cleanup on unmount
+    return () => mapRef.current.remove();
   }, []);
 
-  return (
-    <div
-      ref={mapContainer}
-      style={{ width: '100%', height: '500px' }}
-    />
-  );
+  useEffect(() => {
+    if (selectedLocation && mapRef.current) {
+      mapRef.current.flyTo({
+        center: selectedLocation.coords,
+        zoom: 10,
+        essential: true,
+      });
+
+      new maplibregl.Marker()
+        .setLngLat(selectedLocation.coords)
+        .addTo(mapRef.current);
+    }
+  }, [selectedLocation]);
+
+  return <div ref={mapContainer} style={{ width: '100%', height: '500px' }} />;
 };
 
 export default Map;
