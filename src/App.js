@@ -7,6 +7,7 @@ import locations from './data/locations';
 function App() {
   const [itinerary, setItinerary] = useState([]);
 
+  /* adding the location to the itinerary list. getting the location, generating random color, and adding to the list */
   const addToItinerary = (location) => {
     if (!itinerary.find((item) => item.id === location.id)) {
       const locationWithColor = { ...location, color: getRandomColor() };
@@ -15,9 +16,13 @@ function App() {
   };
 
   const handleSelect = (loc) => {
-    const locWithColor = { ...loc, color: getRandomColor() };
-    addToItinerary(locWithColor);
+    /* making sure to assign a random color if the location is new only */
+    if (!itinerary.find((item) => item.id === loc.id)) {
+      const locWithColor = { ...loc, color: getRandomColor() };
+      setItinerary([...itinerary, locWithColor]);
+    }
   };
+
 
   return (
     <div className="App">
@@ -29,8 +34,10 @@ function App() {
   );
 }
 
+// random color generation function
+
 function getRandomColor() {
-  const letters = '0123456789ABCDEF';
+  const letters = '0123456789ABCDEF'; // hex code
   let color = '#';
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
