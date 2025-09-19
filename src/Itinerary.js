@@ -1,4 +1,6 @@
-const Itinerary = ({ items }) => (
+// displays list of locations the user added
+
+const Itinerary = ({ items, onRemove }) => (
   <div>
     <h2 style={{ textAlign: 'center' }}>Itinerary</h2>
     <ol style={{ paddingLeft: 0 }}>
@@ -23,6 +25,20 @@ const Itinerary = ({ items }) => (
             }}
           ></span>
           {loc.name}
+          <button
+            onClick={() => onRemove(loc.id)}
+            style={{
+              marginLeft: '10px',
+              padding: '2px 6px',
+              backgroundColor: 'gray',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+          >
+            Remove
+          </button>
         </li>
       ))}
     </ol>

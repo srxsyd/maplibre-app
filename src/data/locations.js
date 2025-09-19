@@ -1,14 +1,17 @@
-/* just some fun little locations */
+// just some fun little locations
+
 const locations = [
   { id: 1, name: 'Gelato Paradiso', coords: [-117.7848033, 33.5413697]},
   { id: 2, name: 'Laguna Beach Library', coords: [ -117.7873735, 33.5421318]},
-  { id: 3, name: 'Laguna Beach Museum', coords: [-117.7907839, 33.5435093] },
+  { id: 3, name: 'Laguna Art Museum', coords: [-117.7907839, 33.5435093] },
   { id: 4, name: 'Urth Caffe', coords: [-117.7884628326063, 33.54429604617076]},
   { id: 5, name: 'Orange Inn', coords: [-117.77958695124651, 33.537763771789876]},
   { id: 6, name: 'Heisler Park', coords: [-117.79010077137939, 33.543539702995915]},
   { id: 7, name: 'Gorjana Laguna Beach', coords: [-117.78316476144846, 33.54433792740509]},
   { id: 8, name: 'Wild Strawberry Cafe', coords: [-117.77432995960018, 33.53168296528258]},
   { id: 9, name: 'Picnic Stationery Store', coords: [-117.78250018843534, 33.54412328038597]},
+  { id: 10, name: 'Treasure Island Beach', coords: [-117.75922338136371, 33.51576750352092]},
+  { id: 11, name: 'Sawdust Art Festival', coords: [-117.77866035775064, 33.55081305438556]},
 ];
 
 export default locations;

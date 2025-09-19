@@ -6,9 +6,10 @@
   background-color: #f8f8f8;
 }
 
+/* conveyor belt magic */
 .location-list-slider {
   display: flex;
-  animation: slide 15s linear infinite;
+  animation: slide 20s linear infinite;
 }
 
 @keyframes slide {
@@ -23,7 +24,7 @@
 .location-button {
   margin: 0 10px;
   padding: 8px 16px;
-  background-color: navy;
+  background-color: rgb(86, 114, 193);
   color: white;
   font-family: Calibri, sans-serif;
   border: none;
@@ -34,5 +35,5 @@
 }
 
 .location-button:hover {
-  background-color: darkblue;
+  background-color: rgb(43, 58, 98);
 }

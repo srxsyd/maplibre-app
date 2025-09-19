@@ -3,6 +3,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import jQuery from 'jquery';
 
+// maintains the map
 const Map = ({ locations }) => {
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
@@ -17,7 +18,7 @@ const Map = ({ locations }) => {
   useEffect(() => {
     mapRef.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://tiles.stadiamaps.com/styles/alidade_smooth.json?v=2',
+      style: 'https://demotiles.maplibre.org/style.json', // the style of the map
       center: [-74.5, 40],
       zoom: 2,
     });
