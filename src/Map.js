@@ -17,7 +17,7 @@ const Map = ({ locations }) => {
   useEffect(() => {
     mapRef.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://tiles.stadiamaps.com/styles/alidade_smooth.json',
+      style: 'https://tiles.stadiamaps.com/styles/alidade_smooth.json?v=2',
       center: [-74.5, 40],
       zoom: 2,
     });
