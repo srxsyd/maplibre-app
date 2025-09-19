@@ -1,11 +1,17 @@
 const Itinerary = ({ items }) => (
   <div>
-    <h2>Itinerary</h2>
-    <ol className="itinerary-list-edit">
+    <h2 style={{ textAlign: 'center' }}>Itinerary</h2>
+    <ol style={{ paddingLeft: 0 }}>
       {items.map((loc) => (
         <li
           key={loc.id}
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', margin: '5px 0'}}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            margin: '5px 0',
+          }}
         >
           <span
             style={{

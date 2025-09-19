@@ -1,10 +1,18 @@
 import { useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import jQuery from 'jquery';
 
 const Map = ({ locations }) => {
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
+  const markersRef = useRef([]);
+
+  function setMarkerColor(marker, color) {
+    const $elem = jQuery(marker.getElement());
+    $elem.css('background-color', color);
+    marker._color = color;
+  }
 
   useEffect(() => {
     mapRef.current = new maplibregl.Map({
@@ -20,29 +28,29 @@ const Map = ({ locations }) => {
   useEffect(() => {
     if (!mapRef.current) return;
 
-    // Clear existing markers
-    mapRef.current.eachLayer && mapRef.current.eachLayer((layer) => {
-      if (layer.remove) layer.remove();
-    });
+    markersRef.current.forEach(marker => marker.remove());
+    markersRef.current = [];
 
-    // Add markers for each location
     locations.forEach((loc) => {
       const el = document.createElement('div');
-      el.style.backgroundColor = loc.color;
       el.style.width = '20px';
       el.style.height = '20px';
       el.style.borderRadius = '50%';
       el.style.border = '2px solid white';
+      el.style.backgroundColor = 'transparent';
 
-      new maplibregl.Marker(el)
+      const marker = new maplibregl.Marker(el)
         .setLngLat(loc.coords)
         .addTo(mapRef.current);
+
+      setMarkerColor(marker, loc.color);
+
+      markersRef.current.push(marker);
     });
 
-    // Optional: fit bounds to show all markers
     if (locations.length > 0) {
       const bounds = new maplibregl.LngLatBounds();
-      locations.forEach((loc) => bounds.extend(loc.coords));
+      locations.forEach(loc => bounds.extend(loc.coords));
       mapRef.current.fitBounds(bounds, { padding: 50 });
     }
   }, [locations]);
