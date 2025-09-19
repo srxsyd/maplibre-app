@@ -1,11 +1,11 @@
 const Itinerary = ({ items }) => (
   <div>
     <h2>Itinerary</h2>
-    <ul>
+    <ol>
       {items.map((loc) => (
         <li key={loc.id}>{loc.name}</li>
       ))}
-    </ul>
+    </ol>
   </div>
 );
 

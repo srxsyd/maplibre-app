@@ -1,6 +1,6 @@
 const LocationList = ({ locations, onSelect }) => (
   <div>
-    <h2>Popular Locations</h2>
+    <h2>Orange County Sights to See</h2>
     {locations.map((loc) => (
       <button key={loc.id} onClick={() => onSelect(loc)}>
         {loc.name}
