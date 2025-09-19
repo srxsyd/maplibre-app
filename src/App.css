@@ -41,3 +41,40 @@
   height: 100vh;
   margin: 0;
 }
+
+
+.location-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.location-button {
+  background-color: navy;
+  color: white;
+  font-family: Calibri, sans-serif;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.location-button:hover {
+  background-color: #001f5b;
+}
+
+.itinerary-list-edit {
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 10px 0;
+}
+
+.itinerary-list-edit li {
+  margin: 5px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+}
+

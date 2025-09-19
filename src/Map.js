@@ -31,7 +31,14 @@ const Map = ({ selectedLocation }) => {
     }
   }, [selectedLocation]);
 
-  return <div ref={mapContainer} style={{ width: '100%', height: '500px' }} />;
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
+      <div
+        ref={mapContainer}
+        style={{ width: '80%', height: '400px', border: '1px solid #ccc', borderRadius: '8px' }}
+      />
+    </div>
+  );
 };
 
 export default Map;
