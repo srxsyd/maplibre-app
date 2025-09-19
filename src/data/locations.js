@@ -7,6 +7,8 @@ const locations = [
   { id: 5, name: 'Orange Inn', coords: [-117.77958695124651, 33.537763771789876]},
   { id: 6, name: 'Heisler Park', coords: [-117.79010077137939, 33.543539702995915]},
   { id: 7, name: 'Gorjana Laguna Beach', coords: [-117.78316476144846, 33.54433792740509]},
+  { id: 8, name: 'Wild Strawberry Cafe', coords: [-117.77432995960018, 33.53168296528258]},
+  { id: 9, name: 'Picnic Stationery Store', coords: [-117.78250018843534, 33.54412328038597]},
 ];
 
 export default locations;

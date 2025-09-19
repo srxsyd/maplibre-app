@@ -25,12 +25,13 @@ function App() {
 }
 
 function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+  const hue = 180 + Math.floor(Math.random() * 60); 
+  const saturation = 50 + Math.floor(Math.random() * 40); 
+  const lightness = 40 + Math.floor(Math.random() * 30); 
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
+
+
+
 
 export default App;
