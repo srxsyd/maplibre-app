@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 style={{ textAlign: 'center' }}>Laguna Beach Trip Planner</h1>
+      <h1 style={{ textAlign: 'center' }}>Spontaneous Laguna Beach Trip Planner</h1>
       <LocationList locations={availableLocations} onSelect={handleSelect} />
       <Map locations={itinerary} />
       <Itinerary items={itinerary} onRemove={handleRemove} />
