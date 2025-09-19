@@ -6,34 +6,24 @@
   background-color: #f8f8f8;
 }
 
-/* conveyor belt magic */
 .location-list-slider {
   display: flex;
-  animation: slide 20s linear infinite;
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .location-button {
-  margin: 0 10px;
-  padding: 8px 16px;
-  background-color: rgb(86, 114, 193);
+  margin: 0 8px;
+  padding: 8px 12px;
+  background-color: rgb(91, 146, 214);
   color: white;
   font-family: Calibri, sans-serif;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  white-space: nowrap;
   flex-shrink: 0;
 }
 
 .location-button:hover {
-  background-color: rgb(43, 58, 98);
+  background-color: rgb(50, 82, 120);
 }
