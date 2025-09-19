@@ -10,7 +10,11 @@ function App() {
 
   const addToItinerary = (location) => {
     if (!itinerary.find((item) => item.id === location.id)) {
-      setItinerary([...itinerary, location]);
+      const locationWithColor = {
+        ...location,
+        color: getRandomColor(),
+      };
+      setItinerary([...itinerary, locationWithColor]);
     }
   };
 
@@ -20,14 +24,24 @@ function App() {
       <LocationList
         locations={locations}
         onSelect={(loc) => {
-          setSelectedLocation(loc);
-          addToItinerary(loc);
+          const locWithColor = { ...loc, color: getRandomColor() };
+          setSelectedLocation(locWithColor);
+          addToItinerary(locWithColor);
         }}
       />
       <Map selectedLocation={selectedLocation} />
       <Itinerary items={itinerary} />
     </div>
   );
+}
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 export default App;

@@ -21,11 +21,14 @@ const Map = ({ selectedLocation }) => {
     if (selectedLocation && mapRef.current) {
       mapRef.current.flyTo({
         center: selectedLocation.coords,
-        zoom: 10,
+        zoom: 15,
         essential: true,
       });
 
-      new maplibregl.Marker()
+      const colorAdd = document.createElement('div');
+      colorAdd.style.backgroundColor = selectedLocation.color;
+
+      new maplibregl.Marker(colorAdd)
         .setLngLat(selectedLocation.coords)
         .addTo(mapRef.current);
     }
@@ -35,7 +38,7 @@ const Map = ({ selectedLocation }) => {
     <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
       <div
         ref={mapContainer}
-        style={{ width: '80%', height: '400px', border: '1px solid #ccc', borderRadius: '8px' }}
+        style={{ width: '75%', height: '400px', border: '1px solid #ccc', borderRadius: '8px' }}
       />
     </div>
   );
