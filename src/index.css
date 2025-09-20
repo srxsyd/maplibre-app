@@ -4,7 +4,7 @@
 body {
   margin: 0;
   font-family: 'Playfair Display', serif;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased; /* smooths font on macos? */
 }
 
 
