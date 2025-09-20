@@ -6,8 +6,8 @@ import jQuery from 'jquery';
 // maintains the map
 const Map = ({ locations }) => {
   const mapContainer = useRef(null);
-  const mapRef = useRef(null);
-  const markersRef = useRef([]);
+  const mapRef = useRef(null); // stores the maplibre map reference
+  const markersRef = useRef([]); // stores markers
 
   function setMarkerColor(marker, color) {
     const $elem = jQuery(marker.getElement());
@@ -18,7 +18,7 @@ const Map = ({ locations }) => {
   useEffect(() => {
     mapRef.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://demotiles.maplibre.org/style.json', // the style of the map
+      style: 'https://demotiles.maplibre.org/style.json', // the style of the map; replace with detailed one later?
       center: [-74.5, 40],
       zoom: 2,
     });
@@ -29,9 +29,11 @@ const Map = ({ locations }) => {
   useEffect(() => {
     if (!mapRef.current) return;
 
+    // updates the markers so there are no duplicates
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
 
+    // creates marker for location; initially set to transparent, but later updated
     locations.forEach((loc) => {
       const el = document.createElement('div');
       el.style.width = '20px';
@@ -44,11 +46,14 @@ const Map = ({ locations }) => {
         .setLngLat(loc.coords)
         .addTo(mapRef.current);
 
+      // marker color updated
       setMarkerColor(marker, loc.color);
 
+      // saves new marker in markersRef
       markersRef.current.push(marker);
     });
 
+    // making sure the map displays all markers
     if (locations.length > 0) {
       const bounds = new maplibregl.LngLatBounds();
       locations.forEach(loc => bounds.extend(loc.coords));

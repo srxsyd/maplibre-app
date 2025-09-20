@@ -20,6 +20,7 @@ function App() {
     setItinerary(itinerary.filter((loc) => loc.id !== id));
   };
 
+  // prevents duplicates in itinerary list
   const availableLocations = locations.filter(
     (loc) => !itinerary.some((item) => item.id === loc.id)
   );
@@ -45,6 +46,7 @@ function getRandomColor() {
 }
 */
 
+// completely random color generator
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
