@@ -1,5 +1,6 @@
 // just some fun little locations
 
+// constant array of location objects
 const locations = [
   { id: 1, name: 'Gelato Paradiso', coords: [-117.7848033, 33.5413697]},
   { id: 2, name: 'Laguna Beach Library', coords: [ -117.7873735, 33.5421318]},

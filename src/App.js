@@ -1,13 +1,14 @@
 import { useState } from 'react';
+// importing React useState hook and child components
 import Map from './Map';
 import LocationList from './LocationList';
 import Itinerary from './Itinerary';
 import locations from './data/locations';
 
 function App() {
-  const [itinerary, setItinerary] = useState([]);
+  const [itinerary, setItinerary] = useState([]); // [stores selected location, function to update state]
 
-  // adding locations with a random color
+  // adding locations if not in the itinerary with a random color
   const handleSelect = (loc) => {
     if (!itinerary.find((item) => item.id === loc.id)) {
       const locWithColor = { ...loc, color: getRandomColor() };
@@ -15,12 +16,12 @@ function App() {
     }
   };
 
-  // removing locations
+  // removing locations by id
   const handleRemove = (id) => {
     setItinerary(itinerary.filter((loc) => loc.id !== id));
   };
 
-  // prevents duplicates in itinerary list
+  // filters locations that aren't selected, then prevents duplicates in itinerary list
   const availableLocations = locations.filter(
     (loc) => !itinerary.some((item) => item.id === loc.id)
   );

@@ -1,5 +1,8 @@
 // displays list of locations the user added
 
+//items: array of selected locations
+// onRemove: function to remove a location
+
 const Itinerary = ({ items, onRemove }) => (
   <div>
     <h2 style={{ textAlign: 'center' }}>Itinerary</h2>
