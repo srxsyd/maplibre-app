@@ -1,0 +1,41 @@
+.export-trip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.export-trip select {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 13px;
+  padding: 6px 8px;
+  border: 1px solid var(--ink-soft);
+  background: var(--sand);
+  color: var(--ink);
+}
+
+.export-trip button {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 13px;
+  padding: 6px 12px;
+  background: var(--teal);
+  color: var(--white);
+  border: 1px solid var(--teal);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.export-trip button:hover:not(:disabled) {
+  background: #2e5652;
+}
+
+.export-trip button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.export-trip-error {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 12px;
+  color: var(--clay-dark);
+}

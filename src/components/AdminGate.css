@@ -1,0 +1,61 @@
+.admin-gate {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.admin-gate-status {
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.admin-gate-link {
+  background: none;
+  border: none;
+  color: var(--teal);
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.admin-gate-link:hover {
+  color: var(--clay-dark);
+}
+
+.admin-gate-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-gate-form input {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 13px;
+  padding: 6px 10px;
+  border: 1px solid var(--ink-soft);
+  background: var(--white);
+  color: var(--ink);
+  width: 140px;
+}
+
+.admin-gate-form button {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 13px;
+  padding: 6px 12px;
+  background: var(--teal);
+  color: var(--white);
+  border: 1px solid var(--teal);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.admin-gate-error {
+  color: var(--clay-dark);
+  font-size: 12px;
+}

@@ -2,8 +2,12 @@
 
 # dependencies
 /node_modules
+/server/node_modules
 /.pnp
 .pnp.js
+
+# server database (runtime data, not source)
+/server/locations.db
 
 # testing
 /coverage

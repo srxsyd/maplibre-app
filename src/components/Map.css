@@ -1,0 +1,25 @@
+.map-card {
+  border: 2px solid var(--ink);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.map-canvas {
+  width: 100%;
+  height: 460px;
+}
+
+.map-marker {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 1px var(--ink);
+}
+
+/* squares off MapLibre's own control chrome to match the rest of the app */
+.maplibregl-ctrl-group,
+.maplibregl-ctrl-group button,
+.maplibregl-ctrl-attrib {
+  border-radius: 0 !important;
+}
