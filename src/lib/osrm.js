@@ -1,5 +1,5 @@
 // fetches a street-following route geometry from OSRM's public demo server
-// note: the demo server only actually hosts the driving road network — it accepts
+// note: the demo server only actually hosts the driving road network - it accepts
 // other profile names in the URL but silently serves driving results regardless
 const OSRM_BASE = 'https://router.project-osrm.org/route/v1/driving';
 

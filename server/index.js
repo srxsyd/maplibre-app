@@ -13,7 +13,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// a single shared passcode, not real user auth — enough to keep guests out of admin-only
+// a single shared passcode, not real user auth - enough to keep guests out of admin-only
 // routes for a small personal project. Set ADMIN_KEY in the environment to change it.
 const ADMIN_KEY = process.env.ADMIN_KEY || 'laguna-admin';
 

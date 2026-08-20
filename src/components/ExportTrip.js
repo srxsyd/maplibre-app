@@ -16,7 +16,7 @@ const ExportTrip = ({ map, route }) => {
     try {
       await exportTrip(map, route, format);
     } catch (err) {
-      setError('Export failed — try again.');
+      setError('Export failed - try again.');
     } finally {
       setBusy(false);
     }

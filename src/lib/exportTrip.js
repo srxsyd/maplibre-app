@@ -26,7 +26,7 @@ export async function exportTrip(map, route, format) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // MapLibre clears its WebGL drawing buffer between paints, so the map has to be copied out
-  // synchronously inside a fresh 'render' event — capturing at any other time reads blank pixels
+  // synchronously inside a fresh 'render' event - capturing at any other time reads blank pixels
   await new Promise((resolve) => {
     map.once('render', () => {
       ctx.drawImage(map.getCanvas(), 0, 0);

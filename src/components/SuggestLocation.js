@@ -11,7 +11,7 @@ function parseCoords(lng, lat) {
   return { lng: lngNum, lat: latNum };
 }
 
-// guests can't edit the shared default list directly — this queues a suggestion for admin review
+// guests can't edit the shared default list directly - this queues a suggestion for admin review
 const SuggestLocation = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState(emptyForm);
@@ -40,7 +40,7 @@ const SuggestLocation = ({ onSubmit }) => {
     try {
       await onSubmit({ name: form.name.trim(), ...coords });
       setForm(emptyForm);
-      setConfirmation('Thanks — your suggestion is in the review queue.');
+      setConfirmation('Thanks - your suggestion is in the review queue.');
     } catch (err) {
       setError(err.message);
     } finally {

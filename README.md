@@ -32,6 +32,32 @@ everyone starts in the guest view: pick from the default locations, suggest new 
 list (admin reviews these), and add personal spots that only live in your own browser.
 
 switching to the admin view (top-right of the header) is gated by a shared passcode, checked server-side
-(`ADMIN_KEY` in the environment, defaults to `laguna-admin`) — it's not real user accounts, just enough to
+(`ADMIN_KEY` in the environment, defaults to `laguna-admin`) - it's not real user accounts, just enough to
 keep guests from adding/editing/deleting the default locations. admin can also review guest-suggested spots,
 which get grouped by name so repeat suggestions count toward one entry, and promote or dismiss them.
+
+# deploying
+
+Vercel only serves the static React build - it can't run the API server (no persistent disk for
+the SQLite file, and no long-running process). so the API needs to run somewhere else, and the
+deployed frontend needs to be told where to find it.
+
+**1. deploy the API to Render (free tier):**
+- push this repo to GitHub (already done if you're reading this on GitHub)
+- on [render.com](https://render.com): New > Blueprint, connect this repo - it reads `render.yaml`
+  at the repo root and configures the service automatically (root dir `server`, `npm install` /
+  `npm start`, Node >=22.5 for `node:sqlite`)
+- optionally set an `ADMIN_KEY` value in the Render dashboard instead of using the `laguna-admin` default
+- once deployed, copy the service URL, e.g. `https://maplibre-app-api.onrender.com`
+
+Note: Render's free plan doesn't persist disk across redeploys - the SQLite file (and anything
+added through the app) resets to the seed locations whenever the API is redeployed. It does
+survive normal idling/spin-down/spin-up between requests, just not a new deploy.
+
+**2. point the deployed frontend at it:**
+- on Vercel: Project Settings > Environment Variables > add `REACT_APP_API_BASE` =
+  `https://maplibre-app-api.onrender.com/api` (your Render URL + `/api`)
+- redeploy the Vercel project so the build picks up the new environment variable
+
+Locally, `REACT_APP_API_BASE` is left unset and defaults to the relative `/api` path, which CRA's
+dev-server proxy already forwards to `http://localhost:4000` - no change needed for local dev.
