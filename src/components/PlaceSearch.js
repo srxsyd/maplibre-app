@@ -2,18 +2,18 @@ import { useState } from 'react';
 import './PlaceSearch.css';
 
 const NOMINATIM_URL = 'https://nominatim.openstreetmap.org/search';
-// soft bias toward Laguna Beach - nudges results without excluding matches elsewhere
+// soft bias toward Laguna Beach that nudges results without excluding matches elsewhere
 const LAGUNA_VIEWBOX = '-117.83,33.58,-117.73,33.50';
 
 async function search(query) {
   const url = `${NOMINATIM_URL}?format=json&q=${encodeURIComponent(query)}&limit=5&viewbox=${LAGUNA_VIEWBOX}&bounded=0`;
   const res = await fetch(url, { headers: { Accept: 'application/json' } });
-  if (!res.ok) throw new Error('Search failed - try again.');
+  if (!res.ok) throw new Error('Search failed. Try again.');
   return res.json();
 }
 
 // looks up a place name via OpenStreetMap's free Nominatim geocoder and hands back
-// { name, lng, lat } once the caller picks a result - no API key needed, but keep
+// { name, lng, lat } once the caller picks a result. No API key needed, but keep
 // searches to explicit user action (not per-keystroke) to respect its rate limit
 const PlaceSearch = ({ onPick, placeholder = 'Search for a place…' }) => {
   const [query, setQuery] = useState('');

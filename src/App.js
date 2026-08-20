@@ -136,7 +136,7 @@ function App() {
         {loading && <p className="App-status">Loading locations…</p>}
         {locationsError && (
           <p className="App-status App-status-error">
-            Couldn't reach the API server - make sure it's running (see README).
+            Couldn't reach the API server. Make sure it's running (see README).
           </p>
         )}
         {!loading && !locationsError && (

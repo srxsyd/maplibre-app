@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './AdminGate.css';
 
-// switches between the guest and admin views. Not real user auth - a single shared
-// passcode checked by the server - just enough to keep guests out of admin-only routes.
+// switches between the guest and admin views. Not real user auth, just a single shared
+// passcode checked by the server, enough to keep guests out of admin-only routes.
 const AdminGate = ({ role, isAuthenticated, onEnterAdmin, onResumeAdmin, onExitAdmin }) => {
   const [showForm, setShowForm] = useState(false);
   const [passcode, setPasscode] = useState('');

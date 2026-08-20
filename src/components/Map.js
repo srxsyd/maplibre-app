@@ -42,7 +42,7 @@ const Map = ({ locations, onMapReady }) => {
     });
 
     return () => mapRef.current.remove();
-    // runs once on mount only - the map must not be recreated if onMapReady's identity changes
+    // runs once on mount only. The map must not be recreated if onMapReady's identity changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -118,7 +118,7 @@ const Map = ({ locations, onMapReady }) => {
           mapRef.current.setPaintProperty(ROUTE_LAYER_ID, 'line-dasharray', DASH_SOLID);
         })
         .catch(() => {
-          // network hiccup or the demo server is unavailable - the straight-line estimate stays visible
+          // network hiccup or the demo server is unavailable, so the straight-line estimate stays visible
         });
     }
   }, [locations, mapLoaded]);

@@ -2,7 +2,7 @@
 //
 // locally, relative "/api" paths route through CRA's dev-server "proxy" to http://localhost:4000.
 // in production the frontend and API aren't on the same host (e.g. Vercel + Render), so
-// REACT_APP_API_BASE must point at the deployed API's full URL - see README for setup.
+// REACT_APP_API_BASE must point at the deployed API's full URL (see README for setup).
 const API_BASE = process.env.REACT_APP_API_BASE || '/api';
 
 async function request(path, { adminKey, ...options } = {}) {

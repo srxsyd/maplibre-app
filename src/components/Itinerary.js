@@ -13,7 +13,7 @@ const Itinerary = ({ items, onRemove, map }) => (
       <ExportTrip map={map} route={items} />
     </div>
     {items.length === 0 ? (
-      <p className="itinerary-empty">Nothing added yet - tap a place above to start building your route.</p>
+      <p className="itinerary-empty">Nothing added yet. Tap a place above to start building your route.</p>
     ) : (
       <ol className="itinerary-list">
         {items.map((loc, i) => (

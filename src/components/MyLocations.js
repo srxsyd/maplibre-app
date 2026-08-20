@@ -21,7 +21,7 @@ function loadStored() {
   }
 }
 
-// personal locations kept only in this browser (never sent to the server) - separate from
+// personal locations kept only in this browser (never sent to the server). Separate from
 // both the shared default list and from suggesting a spot for everyone to review
 const MyLocations = ({ onChange }) => {
   const [open, setOpen] = useState(false);
@@ -99,7 +99,7 @@ const MyLocations = ({ onChange }) => {
       {open && (
         <div className="panel-card">
           <p className="panel-hint">
-            Add your own spots for this trip - these stay in your browser only, not shared with anyone else.
+            Add your own spots for this trip. These stay in your browser only, not shared with anyone else.
           </p>
           {error && <p className="panel-error">{error}</p>}
 

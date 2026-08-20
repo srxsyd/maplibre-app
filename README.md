@@ -1,4 +1,4 @@
-# maplibre-app:
+# maplibre-app
 
 this project is a react app i created to practice javascript, css, and working with the open-source maplibre library.
 
@@ -6,58 +6,49 @@ this project is a react app i created to practice javascript, css, and working w
 
 recently, i went on a day trip with some friends to laguna beach and i remembered stressing out the few nights before planning what i wanted to do there. taking inspiration from that experience, i thought it would be fun to create a map-based application that has a list of recommended places to visit and itinerary list a user can add to.
 
-# things i plan to add
+# tech stack
 
-1: images of the locations when the user hovers over the rotating buttons
-2: expand the website to have a dropdown menu with other day-trip-locations i have itinerary recommendations for
-3: find a better map
+- **frontend**: react (create react app), plain css
+- **map**: maplibre gl js, styled with openfreemap's free vector tiles
+- **routing**: osrm's public demo server, for a real street-following route between stops
+- **geocoding**: openstreetmap's nominatim, so places can be added by name instead of typing coordinates
+- **backend**: express, with sqlite (node's built-in `node:sqlite`) for storage
+- **deployment**: the react app on vercel, the api on render
 
 # running locally
 
-the location data now lives in a small SQLite-backed API server instead of a hardcoded file, so two things need to run at once:
+the location data lives in a small sqlite-backed api server instead of a hardcoded file, so two things need to run at once:
 
 ```
-# terminal 1 - API server (first time only: cd server && npm install)
+# terminal 1: api server (first time only, run: cd server && npm install)
 cd server && npm start
 
-# terminal 2 - React app
+# terminal 2: react app
 npm start
 ```
 
-the React dev server proxies `/api/*` requests to the API server on port 4000.
+the react dev server proxies `/api/*` requests to the api server on port 4000.
 
 # guest / admin
 
-everyone starts in the guest view: pick from the default locations, suggest new ones for the shared
-list (admin reviews these), and add personal spots that only live in your own browser.
+everyone starts in the guest view: pick from the default locations, suggest new ones for the shared list (admin reviews these), and add personal spots that only live in your own browser.
 
-switching to the admin view (top-right of the header) is gated by a shared passcode, checked server-side
-(`ADMIN_KEY` in the environment, defaults to `laguna-admin`) - it's not real user accounts, just enough to
-keep guests from adding/editing/deleting the default locations. admin can also review guest-suggested spots,
-which get grouped by name so repeat suggestions count toward one entry, and promote or dismiss them.
+switching to the admin view (top-right of the header) is gated by a shared passcode, checked server-side. it's not real user accounts, just enough to keep guests from adding, editing, or deleting the default locations. (set `ADMIN_KEY` in the environment; it defaults to `laguna-admin`.) admin can also review guest-suggested spots, which get grouped by name so repeat suggestions count toward one entry, and promote or dismiss them.
 
 # deploying
 
-Vercel only serves the static React build - it can't run the API server (no persistent disk for
-the SQLite file, and no long-running process). so the API needs to run somewhere else, and the
-deployed frontend needs to be told where to find it.
+vercel only serves the static react build, so it can't run the api server: there's no persistent disk for the sqlite file and no long-running process. the api needs to run somewhere else, and the deployed frontend needs to be told where to find it.
 
-**1. deploy the API to Render (free tier):**
-- push this repo to GitHub (already done if you're reading this on GitHub)
-- on [render.com](https://render.com): New > Blueprint, connect this repo - it reads `render.yaml`
-  at the repo root and configures the service automatically (root dir `server`, `npm install` /
-  `npm start`, Node >=22.5 for `node:sqlite`)
-- optionally set an `ADMIN_KEY` value in the Render dashboard instead of using the `laguna-admin` default
-- once deployed, copy the service URL, e.g. `https://maplibre-app-api.onrender.com`
+**1. deploy the api to render (free tier):**
+- push this repo to github (already done if you're reading this on github)
+- on [render.com](https://render.com), choose New > Blueprint and connect this repo. it reads `render.yaml` at the repo root and configures the service automatically (root dir `server`, `npm install` / `npm start`, node >=22.5 for `node:sqlite`)
+- optionally set an `ADMIN_KEY` value in the render dashboard instead of using the `laguna-admin` default
+- once deployed, copy the service url, for example `https://maplibre-app-api.onrender.com`
 
-Note: Render's free plan doesn't persist disk across redeploys - the SQLite file (and anything
-added through the app) resets to the seed locations whenever the API is redeployed. It does
-survive normal idling/spin-down/spin-up between requests, just not a new deploy.
+note: render's free plan doesn't persist disk across redeploys, so the sqlite file (and anything added through the app) resets to the seed locations whenever the api is redeployed. it does survive normal idling and spin-down/spin-up between requests, just not a fresh deploy.
 
 **2. point the deployed frontend at it:**
-- on Vercel: Project Settings > Environment Variables > add `REACT_APP_API_BASE` =
-  `https://maplibre-app-api.onrender.com/api` (your Render URL + `/api`)
-- redeploy the Vercel project so the build picks up the new environment variable
+- on vercel, go to project settings > environment variables and add `REACT_APP_API_BASE` set to your render url plus `/api`, for example `https://maplibre-app-api.onrender.com/api`
+- redeploy the vercel project so the build picks up the new environment variable
 
-Locally, `REACT_APP_API_BASE` is left unset and defaults to the relative `/api` path, which CRA's
-dev-server proxy already forwards to `http://localhost:4000` - no change needed for local dev.
+locally, `REACT_APP_API_BASE` is left unset and defaults to the relative `/api` path, which cra's dev-server proxy already forwards to `http://localhost:4000`, so no change is needed for local dev.
