@@ -47,22 +47,12 @@ the react dev server proxies `/api/*` requests to the api server on port 4000.
 
 # admin access
 
-admin view is gated by a passcode, checked server-side. it isn't a real user account, but is enough to keep guests from adding, editing, or deleting the default locations. (set `ADMIN_KEY` in the environment; it defaults to `laguna-admin`.)
+admin view is gated by a passcode, checked server-side. it isn't a real user account, but is enough to keep guests from adding, editing, or deleting the default locations. the vercel deployment has it set to a password private to me (for now).
 
 # deploying
 
-vercel only serves the static react build, so it can't run the api server: there's no persistent disk for the sqlite file and no long-running process. the api needs to run somewhere else, and the deployed frontend needs to be told where to find it.
+**live demo:** [daytrip-planner.vercel.app](https://daytrip-planner.vercel.app/)
 
-**1. deploy the api to render (free tier):**
-- push this repo to github (already done if you're reading this on github)
-- on [render.com](https://render.com), choose New > Blueprint and connect this repo. it reads `render.yaml` at the repo root and configures the service automatically (root dir `server`, `npm install` / `npm start`, node >=22.5 for `node:sqlite`)
-- optionally set an `ADMIN_KEY` value in the render dashboard instead of using the `laguna-admin` default
-- once deployed, copy the service url, for example `https://maplibre-app-api.onrender.com`
+vercel hosts the react frontend; render hosts the api (`render.yaml` at the repo root configures it as a Blueprint). the frontend finds the api via a `REACT_APP_API_BASE` environment variable set on vercel, pointing at the render url plus `/api`. locally that variable is left unset and falls back to the relative `/api` path, which cra's dev-server proxy forwards to `http://localhost:4000`.
 
-note: render's free plan doesn't persist disk across redeploys, so the sqlite file (and anything added through the app) resets to the seed locations whenever the api is redeployed. it does survive normal idling and spin-down/spin-up between requests, just not a fresh deploy.
-
-**2. point the deployed frontend at it:**
-- on vercel, go to project settings > environment variables and add `REACT_APP_API_BASE` set to your render url plus `/api`, for example `https://maplibre-app-api.onrender.com/api`
-- redeploy the vercel project so the build picks up the new environment variable
-
-locally, `REACT_APP_API_BASE` is left unset and defaults to the relative `/api` path, which cra's dev-server proxy already forwards to `http://localhost:4000`, so no change is needed for local dev.
+note: render's free plan doesn't persist disk across redeploys, so the sqlite file (and anything added through the app) resets to the seed locations whenever the api is redeployed.
